@@ -1,26 +1,157 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'MeraPro';
+  src: url('/font/MeraPro.otf') format('opentype'),
+       url('/font/MeraPro.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    @apply overflow-x-hidden;
+  }
+  
+  body {
+    @apply overflow-x-hidden text-secondary-900 bg-secondary-50 font-merriweather;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-secondary-900;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  p {
+    @apply text-secondary-800 leading-relaxed;
+  }
+  
+  a {
+    @apply text-primary-600 hover:text-primary-700 transition-colors;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Tambahan untuk layar besar */
+  @media (min-width: 1600px) {
+    h1 {
+      @apply text-6xl lg:text-7xl;
+    }
+    
+    h2 {
+      @apply text-5xl lg:text-6xl;
+    }
+    
+    h3 {
+      @apply text-4xl lg:text-5xl;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 relative;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-700 focus:ring-primary-500;
+  }
+  
+  .btn-primary span {
+    @apply relative z-10 text-white;
+  }
+  
+  .btn-primary {
+    @apply text-white;
+  }
+  
+  .btn-primary:hover {
+    @apply text-white;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary-600 text-primary-600 hover:bg-primary-50;
+  }
+  
+  .container {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+  
+  .nav-link {
+    @apply font-medium text-secondary-700 hover:text-primary-600 transition-colors;
+  }
+  
+  .nav-link-active {
+    @apply font-medium text-primary-600;
+  }
+}
+
+@layer utilities {
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .text-shadow-md {
+    text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+  }
+
+  /* Responsivitas untuk konten */
+  .responsive-padding {
+    @apply py-12 md:py-16 lg:py-20 xl:py-24;
+  }
+
+  .responsive-container {
+    @apply w-full max-w-[1600px] mx-auto;
+  }
+  
+  /* Animasi untuk tombol */
+  @keyframes shine {
+    0% {
+      left: -100%;
+      width: 0%;
+    }
+    50% {
+      left: 0;
+      width: 100%;
+    }
+    100% {
+      left: 100%;
+      width: 0%;
+    }
+  }
+  
+  .animate-shine {
+    animation: shine 1.5s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 2s infinite;
+  }
 }

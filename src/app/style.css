@@ -1,0 +1,76 @@
+/* Tambahan CSS */
+body {
+  font-family: "Merriweather", serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "MeraPro", sans-serif;
+}
+
+/* Max width container untuk mencegah tampilan terlalu lebar di monitor besar */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Pada layar besar, batasi lebar maksimum konten */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Pada layar extra besar, tetapkan lebar maksimum yang nyaman */
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  body {
+    font-size: 1.1rem;
+  }
+  
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 300ms;
+}
+
+.btn-primary {
+  background-color: #FF4949;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #E60000;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #363636;
+  transition: color 300ms;
+}
+
+.nav-link:hover {
+  color: #FF4949;
+} 

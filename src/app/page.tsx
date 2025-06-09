@@ -1,103 +1,316 @@
-import Image from "next/image";
+'use client';
+
+import MainLayout from "@/components/layout/MainLayout";
+import Hero from "@/components/home/Hero";
+import SearchBar from "@/components/home/SearchBar";
+import Features from "@/components/home/Features";
+import Testimonials from "@/components/home/Testimonials";
+import CarGrid from "@/components/cars/CarGrid";
+import { Car } from "@/components/cars/CarCard";
+import { motion } from "@/lib/motion";
+import ScrollVelocity from "@/components/ui/ScrollVelocityText";
+import { CurtainTransition } from "@/components/ui/PageTransitions";
+import StaggerContainer, { StaggerItem } from "@/components/ui/StaggerContainer";
+
+// Sample data for featured cars
+const featuredCars: Car[] = [
+  {
+    id: "1",
+    name: "Toyota Avanza",
+    brand: "Toyota",
+    image: "/images/cars/toyota-avanza.jpg",
+    pricePerDay: 350000,
+    seats: 7,
+    transmission: "Manual",
+    fuelType: "Bensin",
+    year: 2022,
+    available: true
+  },
+  {
+    id: "2",
+    name: "Honda Civic",
+    brand: "Honda",
+    image: "/images/cars/honda-civic.png",
+    pricePerDay: 700000,
+    seats: 5,
+    transmission: "Automatic",
+    fuelType: "Bensin",
+    year: 2023,
+    available: true
+  },
+  {
+    id: "3",
+    name: "Toyota Alphard",
+    brand: "Toyota",
+    image: "/images/cars/toyota-alphard.png",
+    pricePerDay: 1500000,
+    seats: 7,
+    transmission: "Automatic",
+    fuelType: "Bensin",
+    year: 2023,
+    available: true
+  },
+  {
+    id: "4",
+    name: "Mitsubishi Pajero Sport",
+    brand: "Mitsubishi",
+    image: "/images/cars/mitsubishi-pajero.png",
+    pricePerDay: 1200000,
+    seats: 7,
+    transmission: "Automatic",
+    fuelType: "Diesel",
+    year: 2022,
+    available: false
+  }
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <CurtainTransition>
+      <MainLayout>
+        <StaggerContainer delay={0.2} staggerDelay={0.15}>
+          {/* Hero Section */}
+          <StaggerItem direction="up">
+            <section id="beranda">
+              <Hero />
+            </section>
+          </StaggerItem>
+          
+          {/* Search Bar */}
+          <StaggerItem direction="up">
+            <div className="container px-3 sm:px-4">
+              <SearchBar />
+            </div>
+          </StaggerItem>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          {/* Scroll Velocity Text */}
+          <StaggerItem direction="scale">
+            <div className="w-full bg-gradient-to-r from-primary-600 via-primary-700 to-secondary-600 py-6 mb-4 relative overflow-hidden">
+              {/* Background pattern */}
+              <div className="absolute inset-0 opacity-30" style={{
+                backgroundImage: `
+                  linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                  linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: '20px 20px'
+              }}></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-black/10 to-transparent"></div>
+              
+              <ScrollVelocity 
+                texts={["RENTAL MOBIL PREMIUM", "PERJALANAN TANPA BATAS"]}
+                velocity={80}
+                className="text-2xl md:text-4xl lg:text-5xl font-black tracking-tight"
+                parallaxClassName="py-3"
+                glowEffect={true}
+                gradientText={false}
+                animatedBackground={true}
+                particles={false}
+                damping={60}
+                stiffness={300}
+                numCopies={6}
+              />
+              
+              {/* Decorative road lines */}
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-y-1/2"></div>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/50 to-transparent transform -translate-y-1/2 mt-4"></div>
+            </div>
+          </StaggerItem>
+          
+          {/* Featured Cars */}
+          <StaggerItem direction="up">
+            <section id="mobil-unggulan">
+              <CarGrid 
+                cars={featuredCars} 
+                title="Mobil Unggulan Kami" 
+                subtitle="Pilihan mobil terbaik dengan kualitas premium dan harga terjangkau"
+              />
+            </section>
+          </StaggerItem>
+          
+          {/* Features Section */}
+          <StaggerItem direction="up">
+            <section id="fitur">
+              <Features />
+            </section>
+          </StaggerItem>
+          
+          {/* Testimonials */}
+          <StaggerItem direction="up">
+            <section id="testimonial">
+              <Testimonials />
+            </section>
+          </StaggerItem>
+
+          {/* Contact Section */}
+          <StaggerItem direction="up">
+            <section id="kontak" className="py-16 sm:py-24 bg-gradient-to-br from-secondary-50 to-primary-50">
+              <div className="container mx-auto px-3 sm:px-4">
+                <div className="max-w-6xl mx-auto">
+                  <motion.div 
+                    className="text-center mb-12 sm:mb-16"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary-900 mb-4 sm:mb-6">
+                      Hubungi Kami
+                    </h2>
+                    <p className="text-lg sm:text-xl text-secondary-600 max-w-2xl mx-auto">
+                      Siap membantu Anda 24/7. Jangan ragu untuk menghubungi tim kami
+                    </p>
+                  </motion.div>
+
+                  <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
+                    {/* Contact Info */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="space-y-6 sm:space-y-8"
+                    >
+                      <div>
+                        <h3 className="text-xl sm:text-2xl font-bold text-secondary-900 mb-4 sm:mb-6">
+                          Informasi Kontak
+                        </h3>
+                        <div className="space-y-4 sm:space-y-6">
+                          {[
+                            {
+                              icon: "📱",
+                              title: "WhatsApp",
+                              detail: "+62 822-4875-1765",
+                              link: "https://wa.me/6282248751765?text=Halo! Saya tertarik dengan layanan rental mobil Anda.",
+                              color: "bg-green-50 border-green-200 hover:bg-green-100"
+                            },
+                            {
+                              icon: "📞",
+                              title: "Telepon",
+                              detail: "+62 822-4875-1765",
+                              link: "tel:+6282248751765",
+                              color: "bg-blue-50 border-blue-200 hover:bg-blue-100"
+                            },
+                            {
+                              icon: "✉️",
+                              title: "Email",
+                              detail: "info@carrental.com",
+                              link: "mailto:info@carrental.com",
+                              color: "bg-purple-50 border-purple-200 hover:bg-purple-100"
+                            },
+                            {
+                              icon: "📍",
+                              title: "Alamat",
+                              detail: "Jl. Contoh No. 123, Jakarta Selatan",
+                              link: "#",
+                              color: "bg-orange-50 border-orange-200 hover:bg-orange-100"
+                            }
+                          ].map((contact, index) => (
+                            <motion.a
+                              key={index}
+                              href={contact.link}
+                              target={contact.link.startsWith('http') ? '_blank' : '_self'}
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                              className={`flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 ${contact.color} border-2 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md`}
+                            >
+                              <div className="text-2xl sm:text-3xl">{contact.icon}</div>
+                              <div>
+                                <h4 className="font-semibold text-secondary-900 text-sm sm:text-base">
+                                  {contact.title}
+                                </h4>
+                                <p className="text-secondary-600 text-sm sm:text-base">{contact.detail}</p>
+                              </div>
+                            </motion.a>
+                          ))}
+                        </div>
+                      </div>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                        className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-white"
+                      >
+                        <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Jam Operasional</h4>
+                        <div className="space-y-1 sm:space-y-2 text-primary-100 text-sm sm:text-base">
+                          <p>Senin - Jumat: 07:00 - 22:00</p>
+                          <p>Sabtu - Minggu: 08:00 - 21:00</p>
+                          <p className="font-semibold text-white mt-2 sm:mt-3">Emergency: 24/7</p>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Quick Actions */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg"
+                    >
+                      <h3 className="text-xl sm:text-2xl font-bold text-secondary-900 mb-4 sm:mb-6">
+                        Aksi Cepat
+                      </h3>
+                      
+                      <div className="space-y-3 sm:space-y-4">
+                        <a
+                          href="https://wa.me/6282248751765?text=Halo! Saya tertarik dengan layanan rental mobil Anda."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full bg-green-600 hover:bg-green-700 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        >
+                          <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                            <span className="text-lg sm:text-xl">💬</span>
+                            <span className="text-sm sm:text-base">Chat WhatsApp Sekarang</span>
+                          </div>
+                        </a>
+
+                        <a
+                          href="tel:+6282248751765"
+                          className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        >
+                          <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                            <span className="text-lg sm:text-xl">📞</span>
+                            <span className="text-sm sm:text-base">Telepon Langsung</span>
+                          </div>
+                        </a>
+
+                        <a
+                          href="#mobil-unggulan"
+                          className="block w-full bg-secondary-600 hover:bg-secondary-700 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                        >
+                          <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                            <span className="text-lg sm:text-xl">🚗</span>
+                            <span className="text-sm sm:text-base">Lihat Mobil Tersedia</span>
+                          </div>
+                        </a>
+                      </div>
+
+                      <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-gray-50 rounded-xl">
+                        <h4 className="font-semibold text-secondary-900 mb-2 text-sm sm:text-base">
+                          💡 Tips Cepat
+                        </h4>
+                        <p className="text-xs sm:text-sm text-secondary-600">
+                          Untuk respon tercepat, hubungi kami via WhatsApp dengan menyebutkan:
+                        </p>
+                        <ul className="text-xs sm:text-sm text-secondary-600 mt-2 space-y-1">
+                          <li>• Tanggal sewa</li>
+                          <li>• Durasi sewa</li>
+                          <li>• Jenis mobil yang diinginkan</li>
+                          <li>• Lokasi pickup</li>
+                        </ul>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </StaggerItem>
+        </StaggerContainer>
+      </MainLayout>
+    </CurtainTransition>
   );
 }

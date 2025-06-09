@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'MeraPro';
+  src: url('/font/MeraPro.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MeraPro';
+  src: url('/font/MeraPro.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/font/Merriweather-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-mera: 'MeraPro', sans-serif;
+  --font-merriweather: 'Merriweather', serif;
+} 
